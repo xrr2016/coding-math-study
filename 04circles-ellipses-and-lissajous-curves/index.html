@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Circles, Ellipses and Lissajous Curves</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      const canvas = document.getElementById('canvas')
+      const context = canvas.getContext('2d')
+
+      const width = (canvas.width = window.innerWidth)
+      const height = (canvas.height = window.innerHeight)
+
+      const centerX = width / 2
+      const centerY = height / 2
+
+      let radius = 300
+      let angle = 0
+      let speed = 0.05
+      let x
+      let y
+
+      let numObjects = 30
+      let slice = (Math.PI * 2) / numObjects
+
+      for (let i = 0; i < numObjects; i++) {
+        angle = i * slice
+
+        x = centerX + Math.cos(angle) * radius
+        y = centerY + Math.sin(angle) * radius
+
+        context.beginPath()
+        context.arc(x, y, 10, 0, Math.PI * 2, false)
+        context.fill()
+      }
+
+      // function render() {
+      //   context.clearRect(0, 0, width, height)
+
+      //   x = centerX + Math.cos(angle) * radius
+      //   y = centerY + Math.sin(angle) * radius
+
+      //   context.beginPath()
+      //   context.arc(x, y, 10, 0, Math.PI * 2, false)
+      //   context.fill()
+
+      //   angle += speed
+      //   requestAnimationFrame(render)
+      // }
+
+      // render()
+    </script>
+  </body>
+</html>

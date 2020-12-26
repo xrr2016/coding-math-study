@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>More Trigonometry</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      const canvas = document.getElementById('canvas')
+      const context = canvas.getContext('2d')
+
+      const width = (canvas.width = window.innerWidth)
+      const height = (canvas.height = window.innerHeight)
+
+      let centerY = height / 2
+      let centerX = width / 2
+      let offset = 50
+      let raidus = 50
+      let speed = 0.05
+      let angle = 0
+      let alpha = 1.0
+
+      function render() {
+        let y = centerY + Math.sin(angle) * offset
+        raidus = Math.sin(angle) * raidus + 10
+        alpha = Math.cos(angle)
+
+        context.clearRect(0, 0, width, height)
+        context.fillStyle = `rgba(0, 0, 0, ${alpha})`
+        context.beginPath()
+        context.arc(centerX, y, raidus, 0, Math.PI * 2, false)
+        context.fill()
+
+        angle += speed
+
+        requestAnimationFrame(render)
+      }
+
+      render()
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script>
+      const canvas = document.getElementById('canvas')
+      const context = canvas.getContext('2d')
+
+      const width = (canvas.width = window.innerWidth)
+      const height = (canvas.height = window.innerHeight)
+
+      // context.fillRect(0, 0, width, height)
+
+      for (let i = 0; i < 100; i++) {
+        context.beginPath()
+        context.moveTo(Math.random() * width, Math.random() * height)
+        context.lineTo(Math.random() * width, Math.random() * height)
+        context.stroke()
+      }
+    </script>
+  </body>
+</html>
