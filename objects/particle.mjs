@@ -1,3 +1,5 @@
+import Vector from './vector.mjs'
+
 class Particle {
   position = null
   velocity = null
@@ -10,7 +12,7 @@ class Particle {
     this.velocity = new Vector(0, 0)
     this.velocity.setLength(speed)
     this.velocity.setAngle(direction)
-    this.gravity = gravity || new Vector(0.0, 0.0)
+    this.gravity = new Vector(0.0, gravity ? gravity : 0.0)
   }
 
   update() {
@@ -46,3 +48,5 @@ class Particle {
     this.velocity.addTo(grav)
   }
 }
+
+export default Particle

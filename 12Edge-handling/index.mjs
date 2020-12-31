@@ -1,3 +1,5 @@
+import Particle from '../objects/particle.mjs'
+
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 
@@ -8,7 +10,7 @@ const centerX = width / 2
 const centerY = height / 2
 
 const p = new Particle(centerX, centerY, 2, Math.random() * Math.PI * 2)
-p.radius = 60
+p.radius = 120
 
 function update() {
   context.clearRect(0, 0, width, height)
@@ -21,7 +23,7 @@ function update() {
   context.fill()
 
   if (position.x - p.radius > width) {
-    position.x = p.radius
+    position.x = -p.radius
   }
 
   if (position.x + p.radius < 0) {
@@ -29,7 +31,7 @@ function update() {
   }
 
   if (position.y - p.radius > height) {
-    position.y = p.radius
+    position.y = -p.radius
   }
 
   if (position.y + p.radius < 0) {

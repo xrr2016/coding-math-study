@@ -61,3 +61,5 @@ class Vector {
     this.y /= val
   }
 }
+
+export default Vector
