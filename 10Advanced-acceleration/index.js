@@ -1,3 +1,6 @@
+import Particle from '../objects/particle.mjs'
+import Vector from '../objects/vector.mjs'
+
 const canvas = document.getElementById('canvas')
 const context = canvas.getContext('2d')
 
@@ -9,6 +12,8 @@ const centerY = height / 2
 
 const ship = new Particle(centerX, centerY, 0, 0)
 const thust = new Vector(0, 0)
+
+ship.friction = 0.99
 
 let angle = 0
 let turningLeft = false
@@ -53,17 +58,17 @@ function update() {
   const position = ship.position
   context.clearRect(0, 0, width, height)
 
-  if(turningLeft) {
+  if (turningLeft) {
     angle -= 0.05
   }
 
-  if(turningRight) {
+  if (turningRight) {
     angle += 0.05
   }
 
   thust.setAngle(angle)
 
-  if(thrusting) {
+  if (thrusting) {
     thust.setLength(0.1)
   } else {
     thust.setLength(0.0)
@@ -72,24 +77,23 @@ function update() {
   ship.accelerate(thust)
   ship.update()
 
-  context.save();
-  context.translate(position.x, position.y);
-  context.rotate(angle);
-  
+  context.save()
+  context.translate(position.x, position.y)
+  context.rotate(angle)
 
   context.beginPath()
-  context.moveTo(10, 0);
-  context.lineTo(-10, -7);
-  context.lineTo(-10, 7);
-  context.lineTo(10, 0);
-  if(thrusting) {
-    context.moveTo(-10, 0);
-    context.lineTo(-18, 0);
+  context.moveTo(10, 0)
+  context.lineTo(-10, -7)
+  context.lineTo(-10, 7)
+  context.lineTo(10, 0)
+  if (thrusting) {
+    context.moveTo(-10, 0)
+    context.lineTo(-18, 0)
   }
-  context.stroke();
- 
-  context.restore();
-  
+  context.stroke()
+
+  context.restore()
+
   if (position.x > width) {
     position.x = 0
   }

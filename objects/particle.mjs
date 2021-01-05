@@ -6,6 +6,8 @@ class Particle {
   gravity = null
   mass = 1
   radius = 0
+  bounce = -1
+  friction = 1
 
   constructor(x, y, speed, direction, gravity) {
     this.position = new Vector(x, y)
@@ -16,6 +18,7 @@ class Particle {
   }
 
   update() {
+    this.velocity.multiplyBy(this.friction)
     this.velocity.addTo(this.gravity)
     this.position.addTo(this.velocity)
   }
